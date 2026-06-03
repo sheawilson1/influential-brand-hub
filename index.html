@@ -60,7 +60,7 @@
   }
   nav a {
     display: flex; align-items: center; gap: 12px;
-    color: rgba(255,255,255,.88);
+    color: rgba(255,255,255,.96);
     text-decoration: none;
     padding: 11px 14px;
     border-radius: 10px;
@@ -113,7 +113,7 @@
     transition: border-color .15s, box-shadow .15s;
   }
   #search:focus { border-color: var(--navy); box-shadow: 0 0 0 4px rgba(32,23,71,.08); }
-  #search::placeholder { color: #a9a7b3; }
+  #search::placeholder { color: #6e7180; opacity: 1; }
   .search-hint { margin-top: 8px; font-size: 12.5px; font-weight: 400; color: var(--muted); }
   .search-hint b { font-weight: 400; color: var(--navy); }
   #noresults { display: none; padding: 60px 48px; color: var(--muted); font-size: 16px; }
@@ -191,7 +191,7 @@
   .logo-panel .desc { color: var(--muted); font-size: 13.5px; font-weight: 400; margin-top: 6px; line-height: 1.5; }
 
   .control { margin-top: 22px; }
-  .control > span { display: block; font-size: 12px; letter-spacing:.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 9px; }
+  .control > span { display: block; font-size: 12px; font-weight: 500; letter-spacing:.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 9px; }
   .pills { display: flex; gap: 8px; flex-wrap: wrap; }
   .pill {
     border: 1.5px solid var(--line); background: #fff;
@@ -219,7 +219,7 @@
   }
   .btn:hover { opacity: .88; }
   .btn.ghost { background: #fff; color: var(--navy); }
-  .btn.ghost.disabled { opacity: .45; cursor: not-allowed; border-color: var(--line); color: var(--muted); }
+  .btn.ghost.disabled { cursor: not-allowed; border-color: var(--line); color: #6b6e7c; }
   .btn svg { width: 16px; height: 16px; }
 
   .logo-rule {
