@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Influential — Brand Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #201747;
+    --white: #ffffff;
+    --off-white: #e5e5e5;
+    --charcoal: #5f616d;
+    --digital-green: #2af22f;
+    --ink: #201747;
+    --paper: #f7f6f9;
+    --line: #e8e6ee;
+    --radius: 14px;
+    --sidebar-w: 248px;
+    --font: 'Effra Trial', 'Mulish', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--navy);
+    color: var(--white);
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+  }
+
+  .brand { margin-bottom: 38px; }
+  .brand-logo { width: 158px; max-width: 82%; display: block; margin-bottom: 12px; }
+  .brand-sub { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; opacity: .72; font-weight: 400; }
+
+  .nav-label {
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    opacity: .6; margin: 0 0 10px 8px; font-weight: 400;
+  }
+  nav a {
+    display: flex; align-items: center; gap: 12px;
+    color: rgba(255,255,255,.88);
+    text-decoration: none;
+    padding: 11px 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: background .15s, color .15s;
+  }
+  nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+  nav a.active { background: rgba(255,255,255,.14); color: #fff; font-weight: 400; }
+  nav a svg { width: 18px; height: 18px; opacity: .9; flex: none; }
+
+  .sidebar-foot {
+    margin-top: auto;
+    font-size: 12px;
+    opacity: .68;
+    line-height: 1.5;
+    border-top: 1px solid rgba(255,255,255,.12);
+    padding-top: 16px;
+  }
+  .sidebar-foot a { color: var(--digital-green); text-decoration: none; }
+
+  /* ---------- Main ---------- */
+  main {
+    margin-left: var(--sidebar-w);
+    padding: 0 0 80px;
+  }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 15;
+    background: rgba(247,246,249,.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 48px;
+  }
+  .search-wrap { position: relative; max-width: 620px; }
+  .search-wrap svg {
+    position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px; color: var(--charcoal); pointer-events: none;
+  }
+  #search {
+    width: 100%;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 300;
+    padding: 15px 18px 15px 50px;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  #search:focus { border-color: var(--navy); box-shadow: 0 0 0 4px rgba(32,23,71,.08); }
+  #search::placeholder { color: #a9a7b3; }
+  .search-hint { margin-top: 8px; font-size: 12.5px; color: var(--charcoal); }
+  .search-hint b { font-weight: 400; color: var(--navy); }
+  #noresults { display: none; padding: 60px 48px; color: var(--charcoal); font-size: 16px; }
+
+  .content { padding: 0 48px; }
+
+  section { padding-top: 52px; scroll-margin-top: 90px; }
+  .sec-head { margin-bottom: 22px; }
+  .sec-head h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+  .sec-head p { color: var(--charcoal); font-size: 14.5px; margin-top: 4px; max-width: 640px; }
+
+  .group-label {
+    font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--charcoal); font-weight: 400;
+    margin: 28px 0 14px;
+  }
+
+  /* ---------- Colour grid ---------- */
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .swatch {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .12s, box-shadow .12s;
+  }
+  .swatch:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(32,23,71,.10); }
+  .swatch .chip { height: 110px; position: relative; }
+  .swatch .chip .copyhint {
+    position: absolute; right: 10px; bottom: 10px;
+    background: rgba(255,255,255,.92); color: var(--navy);
+    font-size: 11px; font-weight: 400;
+    padding: 5px 9px; border-radius: 7px;
+    opacity: 0; transition: opacity .15s;
+  }
+  .swatch:hover .chip .copyhint { opacity: 1; }
+  .swatch .meta { padding: 14px 16px 16px; }
+  .swatch .name { font-weight: 400; font-size: 15.5px; }
+  .swatch .hex { font-size: 13px; color: var(--charcoal); font-family: 'SF Mono', ui-monospace, monospace; margin-top: 2px; }
+  .swatch .usage { font-size: 12.5px; color: var(--charcoal); margin-top: 9px; line-height: 1.45; }
+  .swatch .sector-tag {
+    display: inline-block; font-size: 11px; font-weight: 400;
+    padding: 3px 9px; border-radius: 20px; margin-top: 10px;
+    background: var(--off-white); color: var(--navy);
+  }
+
+  /* ---------- Logos ---------- */
+  .logo-studio {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 24px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .logo-stage {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 340px;
+    padding: 40px;
+    transition: background .2s;
+    position: relative;
+  }
+  .logo-stage img { max-width: 78%; max-height: 200px; }
+  .stage-light { background: #fff; background-image: linear-gradient(45deg,#f3f2f6 25%,transparent 25%),linear-gradient(-45deg,#f3f2f6 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f3f2f6 75%),linear-gradient(-45deg,transparent 75%,#f3f2f6 75%); background-size:22px 22px; background-position:0 0,0 11px,11px -11px,-11px 0; }
+  .stage-dark { background: var(--navy); }
+
+  .logo-panel { padding: 30px 30px 30px 6px; display: flex; flex-direction: column; }
+  .logo-panel h3 { font-size: 20px; font-weight: 700; }
+  .logo-panel .desc { color: var(--charcoal); font-size: 13.5px; margin-top: 6px; line-height: 1.5; }
+
+  .control { margin-top: 22px; }
+  .control > span { display: block; font-size: 12px; letter-spacing:.05em; text-transform: uppercase; color: var(--charcoal); margin-bottom: 9px; }
+  .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pill {
+    border: 1.5px solid var(--line); background: #fff;
+    border-radius: 30px; padding: 8px 16px; font-family: var(--font);
+    font-size: 13.5px; cursor: pointer; color: var(--navy);
+    display: flex; align-items: center; gap: 8px; transition: all .14s;
+  }
+  .pill .swatchdot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,.12); }
+  .pill:hover { border-color: var(--navy); }
+  .pill.on { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  .toggle { display: inline-flex; background: var(--off-white); border-radius: 30px; padding: 4px; }
+  .toggle button {
+    border: 0; background: transparent; font-family: var(--font); font-size: 13.5px;
+    padding: 7px 16px; border-radius: 26px; cursor: pointer; color: var(--charcoal);
+  }
+  .toggle button.on { background: #fff; color: var(--navy); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+
+  .actions { margin-top: auto; padding-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--font); font-size: 14px; font-weight: 400;
+    padding: 11px 18px; border-radius: 10px; cursor: pointer; border: 1.5px solid var(--navy);
+    background: var(--navy); color: #fff; display: flex; align-items: center; gap: 8px;
+    transition: opacity .14s;
+  }
+  .btn:hover { opacity: .88; }
+  .btn.ghost { background: #fff; color: var(--navy); }
+  .btn.ghost.disabled { opacity: .45; cursor: not-allowed; border-color: var(--line); color: var(--charcoal); }
+  .btn svg { width: 16px; height: 16px; }
+
+  .logo-rule {
+    margin-top: 28px; background: #fff; border: 1px solid var(--line);
+    border-left: 3px solid var(--digital-green); border-radius: 10px;
+    padding: 16px 20px; font-size: 13.5px; color: var(--charcoal); line-height: 1.6;
+  }
+  .logo-rule b { color: var(--navy); font-weight: 400; }
+
+  /* ---------- Fonts ---------- */
+  .font-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 18px;
+    padding: 34px 36px; margin-bottom: 18px;
+  }
+  .font-card .tier { font-size: 12px; letter-spacing:.06em; text-transform: uppercase; color: var(--charcoal); }
+  .specimen-h { font-size: 52px; font-weight: 700; letter-spacing: -0.02em; margin: 12px 0 4px; line-height: 1.05; }
+  .specimen-b { font-size: 26px; font-weight: 300; color: #3a3550; max-width: 720px; }
+  .font-meta { display: flex; gap: 36px; flex-wrap: wrap; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .font-meta div span { display:block; font-size: 12px; color: var(--charcoal); text-transform: uppercase; letter-spacing:.04em; }
+  .font-meta div b { font-weight: 400; font-size: 15px; }
+  .copyrow { display:flex; align-items:center; gap:10px; margin-top: 20px; }
+  .codepill {
+    font-family: 'SF Mono', ui-monospace, monospace; font-size: 13px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 8px;
+    padding: 8px 12px; cursor: pointer; color: var(--navy);
+  }
+  .codepill:hover { border-color: var(--navy); }
+
+  /* ---------- Toast ---------- */
+  #toast {
+    position: fixed; bottom: 30px; left: 50%; transform: transl(-50%, 20px);
+    transform: translateX(-50%) translateY(20px);
+    background: var(--navy); color: #fff; padding: 13px 22px; border-radius: 12px;
+    font-size: 14.5px; box-shadow: 0 12px 34px rgba(32,23,71,.3);
+    opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 50;
+    display: flex; align-items: center; gap: 10px;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  #toast .tick { color: var(--digital-green); }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 860px) {
+    .logo-studio { grid-template-columns: 1fr; }
+    .logo-panel { padding: 0 24px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">
+    <img src="assets/logos/inf-logo-white.png" alt="Influential" class="brand-logo" />
+    <span class="brand-sub">Brand Hub</span>
+  </div>
+
+  <p class="nav-label">Browse</p>
+  <nav id="nav">
+    <a href="#logos" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+      Logos
+    </a>
+    <a href="#colours">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="9.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1.4" fill="currentColor" stroke="none"/><circle cx="16" cy="14" r="1.4" fill="currentColor" stroke="none"/></svg>
+      Colours
+    </a>
+    <a href="#fonts">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></svg>
+      Fonts
+    </a>
+  </nav>
+
+  <div class="sidebar-foot">
+    Internal use only.<br>
+    Need the full PDF? <a href="#" id="pdflink">Download guidelines</a>
+  </div>
+</aside>
+
+<main>
+  <div class="topbar">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="text" placeholder="Search the brand…  try “digital green”, “navy logo”, “Effra”" autocomplete="off" />
+    </div>
+    <p class="search-hint">Search by <b>colour name</b>, <b>hex code</b>, <b>sector</b>, or <b>asset</b>. Click any colour or code to copy it.</p>
+  </div>
+
+  <div id="noresults">No matches. Try a colour name like <b>creative yellow</b>, a hex like <b>#2af22f</b>, or <b>logo</b>.</div>
+
+  <div class="content">
+
+    <!-- ============ LOGOS ============ -->
+    <section id="logos" data-search="logo logos wordmark mark brand symbol red navy white mono primary reversed colour version download svg png">
+      <div class="sec-head">
+        <h2>Logos</h2>
+        <p>Three approved versions of the Influential mark. Pick the one that fits your background, preview it, then copy or download. Per the guidelines the logo is never redrawn, distorted, or recoloured beyond these versions.</p>
+      </div>
+
+      <div class="logo-studio">
+        <div class="logo-stage stage-light" id="logoStage">
+          <img id="logoImg" src="assets/logos/inf-logo-red.png" alt="Influential logo" />
+        </div>
+        <div class="logo-panel">
+          <h3 id="logoTitle">Primary (Red)</h3>
+          <p class="desc" id="logoDesc">The signature mark: pink-red circle with the navy wordmark. Use on white and light backgrounds.</p>
+
+          <div class="control">
+            <span>Version</span>
+            <div class="pills" id="variantPills">
+              <button class="pill on" data-variant="red"><span class="swatchdot" style="background:#fe2458"></span>Red</button>
+              <button class="pill" data-variant="navy"><span class="swatchdot" style="background:#201747"></span>Navy</button>
+              <button class="pill" data-variant="white"><span class="swatchdot" style="background:#fff"></span>White</button>
+            </div>
+          </div>
+
+          <div class="control">
+            <span>Preview background</span>
+            <div class="toggle" id="bgToggle">
+              <button class="on" data-bg="light">Light</button>
+              <button data-bg="dark">Dark</button>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn" id="copyLogo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+              Copy image
+            </button>
+            <button class="btn ghost" id="dlPng">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+              Download PNG
+            </button>
+            <button class="btn ghost disabled" id="dlSvg" title="SVG source not available yet">Download SVG</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-rule">
+        <b>Usage rules.</b> Never redraw, distort, or recolour the mark. Keep a minimum exclusion zone clear of other text and imagery. When pairing the logo with copy, align the text to the lettering in the wordmark.
+        <span style="display:block;margin-top:8px;opacity:.8;">SVG/vector download will switch on once the source files are added to the asset library.</span>
+      </div>
+    </section>
+
+    <!-- ============ COLOURS ============ -->
+    <section id="colours" data-search="colour color palette hex swatch">
+      <div class="sec-head">
+        <h2>Colours</h2>
+        <p>The full Influential palette. Each sector has its own vibrant colour. Click any swatch to copy its hex code. Always pick the background and copy combination with the greatest contrast.</p>
+      </div>
+
+      <p class="group-label">Core / Neutral</p>
+      <div class="swatch-grid" id="grid-core"></div>
+
+      <p class="group-label">Vibrant / Sector</p>
+      <div class="swatch-grid" id="grid-vibrant"></div>
+
+      <p class="group-label">Pastel &amp; Deep tones</p>
+      <div class="swatch-grid" id="grid-pastel"></div>
+    </section>
+
+    <!-- ============ FONTS ============ -->
+    <section id="fonts" data-search="font fonts typography typeface effra segoe type text">
+      <div class="sec-head">
+        <h2>Fonts</h2>
+        <p>Effra is the primary typeface. Body copy is always set at exactly 50% of the headline size.</p>
+      </div>
+
+      <div class="font-card" data-search="effra primary headline body bold light">
+        <div class="tier">Primary typeface</div>
+        <div class="specimen-h">Effra Bold</div>
+        <div class="specimen-b">Effra Light for body copy. Clean, confident, and made to move.</div>
+        <div class="font-meta">
+          <div><span>Headlines</span><b>Effra Bold</b></div>
+          <div><span>Body</span><b>Effra Light</b></div>
+          <div><span>Sizing rule</span><b>Body = 50% of headline</b></div>
+          <div><span>Display / Black</span><b>Effra XBold · Effra Black</b></div>
+        </div>
+        <div class="copyrow">
+          <span style="font-size:13px;color:var(--charcoal)">CSS stack:</span>
+          <button class="codepill" data-copy="font-family: 'Effra Trial', 'Mulish', system-ui, sans-serif;">font-family: 'Effra Trial', 'Mulish', system-ui, sans-serif;</button>
+        </div>
+      </div>
+
+      <div class="font-card" data-search="segoe ui fallback secondary substitute">
+        <div class="tier">Secondary / fallback (when Effra is unavailable)</div>
+        <div class="specimen-h" style="font-family:'Segoe UI',system-ui,sans-serif">Segoe UI Bold</div>
+        <div class="specimen-b" style="font-family:'Segoe UI',system-ui,sans-serif;font-weight:300">Segoe UI Light for body copy when Effra can't be used.</div>
+        <div class="font-meta">
+          <div><span>Headlines</span><b>Segoe UI Bold</b></div>
+          <div><span>Body</span><b>Segoe UI Light</b></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div id="toast"><span class="tick">✓</span><span id="toastText">Copied</span></div>
+
+<script>
+/* ---------- Colour data (from BRAND.md) ---------- */
+const COLOURS = {
+  core: [
+    { name:'Navy',      hex:'#201747', usage:'Primary dark. Text, backgrounds.' },
+    { name:'White',     hex:'#ffffff', usage:'Copy on dark backgrounds.' },
+    { name:'Off White', hex:'#e5e5e5', usage:'Light backgrounds, dividers.' },
+    { name:'Black',     hex:'#000000', usage:'—' },
+    { name:'Charcoal',  hex:'#5f616d', usage:'Secondary text, muted UI.' },
+  ],
+  vibrant: [
+    { name:'Digital Green',   hex:'#2af22f', sector:'Digital' },
+    { name:'Creative Yellow', hex:'#f1e63f', sector:'Creative' },
+    { name:'PR Blue',         hex:'#0b1ee4', sector:'PR' },
+    { name:'Campaign Orange', hex:'#ff7d3a', sector:'Campaign' },
+    { name:'Insights Red',    hex:'#fe2458', sector:'Insights' },
+  ],
+  pastel: [
+    { name:'Pastel Green',  hex:'#97ff99' },
+    { name:'Pastel Yellow', hex:'#fcf584' },
+    { name:'Pastel Orange', hex:'#ffb48d' },
+    { name:'Pastel Blue',   hex:'#5c68eb' },
+    { name:'Pastel Red',    hex:'#ff7f9d' },
+    { name:'Forest Green',  hex:'#197319' },
+    { name:'Mustard Yellow',hex:'#efa33f' },
+    { name:'Deep Blue',     hex:'#071289' },
+    { name:'Burnt Orange',  hex:'#a41f1f' },
+    { name:'Dark Red',      hex:'#a91538' },
+  ]
+};
+
+/* contrast helper -> pick readable copy-hint colour */
+function isLight(hex){
+  const c = hex.replace('#','');
+  const r=parseInt(c.substr(0,2),16),g=parseInt(c.substr(2,2),16),b=parseInt(c.substr(4,2),16);
+  return (0.299*r+0.587*g+0.114*b) > 150;
+}
+
+function swatchCard(c){
+  const el = document.createElement('div');
+  el.className = 'swatch';
+  el.dataset.search = (c.name+' '+c.hex+' '+(c.sector||'')+' '+(c.usage||'')).toLowerCase();
+  const hintColor = isLight(c.hex) ? '#201747' : '#fff';
+  el.innerHTML = `
+    <div class="chip" style="background:${c.hex}${c.hex==='#ffffff'?';box-shadow:inset 0 0 0 1px #e8e6ee':''}">
+      <span class="copyhint" style="${isLight(c.hex)?'':'background:rgba(0,0,0,.35);color:#fff'}">Click to copy</span>
+    </div>
+    <div class="meta">
+      <div class="name">${c.name}</div>
+      <div class="hex">${c.hex.toUpperCase()}</div>
+      ${c.usage ? `<div class="usage">${c.usage}</div>` : ''}
+      ${c.sector ? `<div class="sector-tag">${c.sector} sector</div>` : ''}
+    </div>`;
+  el.addEventListener('click', ()=> copy(c.hex.toUpperCase(), `${c.name} ${c.hex.toUpperCase()} copied`));
+  return el;
+}
+
+['core','vibrant','pastel'].forEach(k=>{
+  const grid = document.getElementById('grid-'+k);
+  COLOURS[k].forEach(c=> grid.appendChild(swatchCard(c)));
+});
+
+/* ---------- Copy helper + toast ---------- */
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  document.getElementById('toastText').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove('show'), 1800);
+}
+function copy(text, msg){
+  navigator.clipboard.writeText(text).then(()=> toast(msg || 'Copied')).catch(()=> toast('Copied'));
+}
+document.querySelectorAll('.codepill').forEach(p=>{
+  p.addEventListener('click', ()=> copy(p.dataset.copy, 'CSS font stack copied'));
+});
+
+/* ---------- Logo studio ---------- */
+const VARIANTS = {
+  red:   { src:'assets/logos/inf-logo-red.png',   title:'Primary (Red)',  desc:'The signature mark: pink-red circle with the navy wordmark. Use on white and light backgrounds.', bg:'light' },
+  navy:  { src:'assets/logos/inf-logo-navy.png',  title:'Navy mono',      desc:'Single-colour navy version. Use on white and light backgrounds where the full-colour mark isn’t suitable.', bg:'light' },
+  white: { src:'assets/logos/inf-logo-white.png', title:'White mono',     desc:'Single-colour white (reversed) version. Use on dark or coloured backgrounds.', bg:'dark' },
+};
+let currentVariant = 'red';
+const logoImg = document.getElementById('logoImg');
+const logoStage = document.getElementById('logoStage');
+
+function setVariant(v){
+  currentVariant = v;
+  const d = VARIANTS[v];
+  logoImg.src = d.src;
+  document.getElementById('logoTitle').textContent = d.title;
+  document.getElementById('logoDesc').textContent = d.desc;
+  document.querySelectorAll('#variantPills .pill').forEach(p=> p.classList.toggle('on', p.dataset.variant===v));
+  setBg(d.bg); // snap to the recommended background
+}
+function setBg(bg){
+  logoStage.className = 'logo-stage ' + (bg==='dark' ? 'stage-dark' : 'stage-light');
+  document.querySelectorAll('#bgToggle button').forEach(b=> b.classList.toggle('on', b.dataset.bg===bg));
+}
+document.querySelectorAll('#variantPills .pill').forEach(p=> p.addEventListener('click', ()=> setVariant(p.dataset.variant)));
+document.querySelectorAll('#bgToggle button').forEach(b=> b.addEventListener('click', ()=> setBg(b.dataset.bg)));
+
+document.getElementById('dlPng').addEventListener('click', ()=>{
+  const a = document.createElement('a');
+  a.href = VARIANTS[currentVariant].src;
+  a.download = 'influential-logo-' + currentVariant + '.png';
+  a.click();
+  toast('Downloading ' + currentVariant + ' logo (PNG)');
+});
+document.getElementById('copyLogo').addEventListener('click', async ()=>{
+  try {
+    const res = await fetch(VARIANTS[currentVariant].src);
+    const blob = await res.blob();
+    await navigator.clipboard.write([ new ClipboardItem({ [blob.type]: blob }) ]);
+    toast('Logo image copied to clipboard');
+  } catch(e){
+    toast('Copy not supported here — use Download');
+  }
+});
+document.getElementById('dlSvg').addEventListener('click', ()=> toast('SVG source not added yet'));
+document.getElementById('pdflink').addEventListener('click', (e)=>{ e.preventDefault(); toast('Hook up the PDF here'); });
+
+/* ---------- Search filter ---------- */
+const search = document.getElementById('search');
+const sections = Array.from(document.querySelectorAll('section'));
+const noResults = document.getElementById('noresults');
+
+search.addEventListener('input', ()=>{
+  const q = search.value.trim().toLowerCase();
+  const tokens = q.split(/\s+/).filter(Boolean);
+  const hit = (text)=> tokens.every(t=> text.includes(t)); // all words must match
+  let anyVisible = false;
+
+  sections.forEach(sec=>{
+    const items = sec.querySelectorAll('[data-search]');
+    let secMatch = false;
+    const secText = sec.dataset.search || '';
+
+    if(items.length){
+      items.forEach(it=>{
+        const match = !q || hit(it.dataset.search + ' ' + secText);
+        it.classList.toggle('hidden', !match);
+        if(match) secMatch = true;
+      });
+    } else {
+      secMatch = !q || hit(secText);
+    }
+    // hide group labels with no visible swatches
+    sec.querySelectorAll('.group-label').forEach(lbl=>{
+      const grid = lbl.nextElementSibling;
+      const visible = grid && grid.querySelector('.swatch:not(.hidden)');
+      lbl.classList.toggle('hidden', q && !visible);
+    });
+
+    sec.classList.toggle('hidden', q && !secMatch);
+    if(secMatch) anyVisible = true;
+  });
+
+  noResults.style.display = (q && !anyVisible) ? 'block' : 'none';
+});
+
+/* ---------- Scroll-spy nav ---------- */
+const navLinks = Array.from(document.querySelectorAll('#nav a'));
+const spy = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=> l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s=> spy.observe(s));
+</script>
+</body>
+</html>
