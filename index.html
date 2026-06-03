@@ -14,6 +14,7 @@
     --white: #ffffff;
     --off-white: #e5e5e5;
     --charcoal: #5f616d;
+    --muted: #3d404e;
     --digital-green: #2af22f;
     --ink: #201747;
     --paper: #f7f6f9;
@@ -73,7 +74,7 @@
   .sidebar-foot {
     margin-top: auto;
     font-size: 12px;
-    opacity: .68;
+    opacity: .82;
     line-height: 1.5;
     border-top: 1px solid rgba(255,255,255,.12);
     padding-top: 16px;
@@ -96,7 +97,7 @@
   .search-wrap { position: relative; max-width: 620px; }
   .search-wrap svg {
     position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
-    width: 20px; height: 20px; color: var(--charcoal); pointer-events: none;
+    width: 20px; height: 20px; color: var(--muted); pointer-events: none;
   }
   #search {
     width: 100%;
@@ -113,20 +114,20 @@
   }
   #search:focus { border-color: var(--navy); box-shadow: 0 0 0 4px rgba(32,23,71,.08); }
   #search::placeholder { color: #a9a7b3; }
-  .search-hint { margin-top: 8px; font-size: 12.5px; color: var(--charcoal); }
+  .search-hint { margin-top: 8px; font-size: 12.5px; font-weight: 400; color: var(--muted); }
   .search-hint b { font-weight: 400; color: var(--navy); }
-  #noresults { display: none; padding: 60px 48px; color: var(--charcoal); font-size: 16px; }
+  #noresults { display: none; padding: 60px 48px; color: var(--muted); font-size: 16px; }
 
   .content { padding: 0 48px; }
 
   section { padding-top: 52px; scroll-margin-top: 90px; }
   .sec-head { margin-bottom: 22px; }
   .sec-head h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
-  .sec-head p { color: var(--charcoal); font-size: 14.5px; margin-top: 4px; max-width: 640px; }
+  .sec-head p { color: var(--muted); font-size: 14.5px; font-weight: 400; margin-top: 4px; max-width: 640px; }
 
   .group-label {
     font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
-    color: var(--charcoal); font-weight: 400;
+    color: var(--muted); font-weight: 400;
     margin: 28px 0 14px;
   }
 
@@ -156,8 +157,8 @@
   .swatch:hover .chip .copyhint { opacity: 1; }
   .swatch .meta { padding: 14px 16px 16px; }
   .swatch .name { font-weight: 400; font-size: 15.5px; }
-  .swatch .hex { font-size: 13px; color: var(--charcoal); font-family: 'SF Mono', ui-monospace, monospace; margin-top: 2px; }
-  .swatch .usage { font-size: 12.5px; color: var(--charcoal); margin-top: 9px; line-height: 1.45; }
+  .swatch .hex { font-size: 13px; color: var(--muted); font-family: 'SF Mono', ui-monospace, monospace; margin-top: 2px; }
+  .swatch .usage { font-size: 12.5px; font-weight: 400; color: var(--muted); margin-top: 9px; line-height: 1.45; }
   .swatch .sector-tag {
     display: inline-block; font-size: 11px; font-weight: 400;
     padding: 3px 9px; border-radius: 20px; margin-top: 10px;
@@ -187,10 +188,10 @@
 
   .logo-panel { padding: 30px 30px 30px 6px; display: flex; flex-direction: column; }
   .logo-panel h3 { font-size: 20px; font-weight: 700; }
-  .logo-panel .desc { color: var(--charcoal); font-size: 13.5px; margin-top: 6px; line-height: 1.5; }
+  .logo-panel .desc { color: var(--muted); font-size: 13.5px; font-weight: 400; margin-top: 6px; line-height: 1.5; }
 
   .control { margin-top: 22px; }
-  .control > span { display: block; font-size: 12px; letter-spacing:.05em; text-transform: uppercase; color: var(--charcoal); margin-bottom: 9px; }
+  .control > span { display: block; font-size: 12px; letter-spacing:.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 9px; }
   .pills { display: flex; gap: 8px; flex-wrap: wrap; }
   .pill {
     border: 1.5px solid var(--line); background: #fff;
@@ -205,7 +206,7 @@
   .toggle { display: inline-flex; background: var(--off-white); border-radius: 30px; padding: 4px; }
   .toggle button {
     border: 0; background: transparent; font-family: var(--font); font-size: 13.5px;
-    padding: 7px 16px; border-radius: 26px; cursor: pointer; color: var(--charcoal);
+    padding: 7px 16px; border-radius: 26px; cursor: pointer; color: var(--muted);
   }
   .toggle button.on { background: #fff; color: var(--navy); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
 
@@ -218,13 +219,13 @@
   }
   .btn:hover { opacity: .88; }
   .btn.ghost { background: #fff; color: var(--navy); }
-  .btn.ghost.disabled { opacity: .45; cursor: not-allowed; border-color: var(--line); color: var(--charcoal); }
+  .btn.ghost.disabled { opacity: .45; cursor: not-allowed; border-color: var(--line); color: var(--muted); }
   .btn svg { width: 16px; height: 16px; }
 
   .logo-rule {
     margin-top: 28px; background: #fff; border: 1px solid var(--line);
     border-left: 3px solid var(--digital-green); border-radius: 10px;
-    padding: 16px 20px; font-size: 13.5px; color: var(--charcoal); line-height: 1.6;
+    padding: 16px 20px; font-size: 13.5px; font-weight: 400; color: var(--muted); line-height: 1.6;
   }
   .logo-rule b { color: var(--navy); font-weight: 400; }
 
@@ -233,11 +234,11 @@
     background: #fff; border: 1px solid var(--line); border-radius: 18px;
     padding: 34px 36px; margin-bottom: 18px;
   }
-  .font-card .tier { font-size: 12px; letter-spacing:.06em; text-transform: uppercase; color: var(--charcoal); }
+  .font-card .tier { font-size: 12px; font-weight: 400; letter-spacing:.06em; text-transform: uppercase; color: var(--muted); }
   .specimen-h { font-size: 52px; font-weight: 700; letter-spacing: -0.02em; margin: 12px 0 4px; line-height: 1.05; }
   .specimen-b { font-size: 26px; font-weight: 300; color: #3a3550; max-width: 720px; }
   .font-meta { display: flex; gap: 36px; flex-wrap: wrap; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
-  .font-meta div span { display:block; font-size: 12px; color: var(--charcoal); text-transform: uppercase; letter-spacing:.04em; }
+  .font-meta div span { display:block; font-size: 12px; font-weight: 400; color: var(--muted); text-transform: uppercase; letter-spacing:.04em; }
   .font-meta div b { font-weight: 400; font-size: 15px; }
   .copyrow { display:flex; align-items:center; gap:10px; margin-top: 20px; }
   .codepill {
@@ -397,7 +398,7 @@
           <div><span>Display / Black</span><b>Effra XBold · Effra Black</b></div>
         </div>
         <div class="copyrow">
-          <span style="font-size:13px;color:var(--charcoal)">CSS stack:</span>
+          <span style="font-size:13px;color:var(--muted)">CSS stack:</span>
           <button class="codepill" data-copy="font-family: 'Effra Trial', 'Mulish', system-ui, sans-serif;">font-family: 'Effra Trial', 'Mulish', system-ui, sans-serif;</button>
         </div>
       </div>
